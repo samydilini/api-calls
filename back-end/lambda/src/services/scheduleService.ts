@@ -5,6 +5,9 @@ const prisma = new PrismaClient();
 Service layer for handling schedules
 */
 export class ScheduleService {
+  /*
+  create a Schedule
+  */
   async createScheduleAndTasks(
     data: Partial<Schedule> & { tasks?: Partial<Task>[] }
   ): Promise<Schedule> {
@@ -45,10 +48,46 @@ export class ScheduleService {
     }
   }
 
+  /** returns all schedules with their tasks */
   async getAllSchedules(): Promise<Schedule[]> {
     return await prisma.schedule.findMany({
       include: {
         tasks: true, // Include related tasks
+      },
+    });
+  }
+
+  /**
+   * delete a shedule and all it's associated tasks
+   * @param id shedule id to be deleted
+   */
+  async deleteSchedule(id: string) {
+    // Delete all tasks associated with the schedule
+    await prisma.task.deleteMany({
+      where: {
+        schedule_id: id,
+      },
+    });
+
+    await prisma.schedule.delete({
+      where: {
+        id: id,
+      },
+    });
+  }
+
+  /**
+   * updates task's type with id
+   * @param body has task id and new type
+   * @returns updated task
+   */
+  async updateTask(body: any): Promise<Task> {
+    return await prisma.task.update({
+      where: {
+        id: body.taskId,
+      },
+      data: {
+        type: body.type,
       },
     });
   }

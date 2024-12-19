@@ -45,3 +45,17 @@ export const isValidTask = (task: any): boolean => {
   console.log("task validated");
   return true;
 };
+
+export const isValidTaskUpdateRequest = (data: any): boolean => {
+  console.log("validation started", data);
+  if (
+    !data ||
+    typeof data.taskId !== "string" ||
+    typeof data.type !== "string"
+  ) {
+    console.error("Task update request validation failer");
+    return false;
+  }
+  console.log("Task update request passed");
+  return true;
+};

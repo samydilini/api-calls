@@ -11,7 +11,6 @@ export const handler = async (
   event: APIGatewayProxyEvent
 ): Promise<APIGatewayProxyResult> => {
   try {
-    // You can use event.queryStringParameters or event.pathParameters if needed to filter results
     const schedules = await scheduleService.getAllSchedules();
 
     return createResponse(200, schedules);

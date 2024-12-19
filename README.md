@@ -34,6 +34,8 @@ deploying
   `zip -r getSchedules.zip getSchedules.js ./services ./utils node_modules`
 - Zip deleteSchedule lambda
   `zip -r deleteSchedule.zip deleteSchedule.js ./services ./utils node_modules`
+  - Zip updateTaskType lambda
+    `zip -r updateTaskType.zip updateTaskType.js ./services ./utils node_modules`
 
 4. Run terraform
    cd to api-calls/back-end/terraform

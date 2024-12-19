@@ -1,4 +1,8 @@
-import { isValidSchedule, isValidTask } from "../../../src/utils/validation"; // adjust path as needed
+import {
+  isValidSchedule,
+  isValidTask,
+  isValidTaskUpdateRequest,
+} from "../../../src/utils/validation"; // adjust path as needed
 
 describe("isValidSchedule", () => {
   it("should return false if account_id is not a number", () => {
@@ -116,5 +120,53 @@ describe("isValidTask", () => {
       type: "task type",
     };
     expect(isValidTask(task)).toBe(true);
+  });
+});
+
+describe("isValidTaskUpdateRequest", () => {
+  test("returns true for valid input", () => {
+    const validData = { taskId: "123", type: "update" };
+    const result = isValidTaskUpdateRequest(validData);
+    expect(result).toBe(true);
+  });
+
+  test("returns false when taskId is not a string", () => {
+    const invalidData = { taskId: 123, type: "update" };
+    const result = isValidTaskUpdateRequest(invalidData);
+    expect(result).toBe(false);
+  });
+
+  test("returns false when type is not a string", () => {
+    const invalidData = { taskId: "123", type: 456 };
+    const result = isValidTaskUpdateRequest(invalidData);
+    expect(result).toBe(false);
+  });
+
+  test("returns false when taskId is missing", () => {
+    const invalidData = { type: "update" };
+    const result = isValidTaskUpdateRequest(invalidData);
+    expect(result).toBe(false);
+  });
+
+  test("returns false when type is missing", () => {
+    const invalidData = { taskId: "123" };
+    const result = isValidTaskUpdateRequest(invalidData);
+    expect(result).toBe(false);
+  });
+
+  test("returns false for completely invalid input", () => {
+    const invalidData = { someOtherField: "value" };
+    const result = isValidTaskUpdateRequest(invalidData);
+    expect(result).toBe(false);
+  });
+
+  test("returns false for null input", () => {
+    const result = isValidTaskUpdateRequest(null);
+    expect(result).toBe(false);
+  });
+
+  test("returns false for undefined input", () => {
+    const result = isValidTaskUpdateRequest(undefined);
+    expect(result).toBe(false);
   });
 });
