@@ -1,0 +1,27 @@
+services:
+  postgres:
+    image: postgres:latest
+    environment:
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+      POSTGRES_DB: ${DB_NAME}
+    ports:
+      - "${DB_PORT}:${DB_PORT}"
+    networks:
+      - app-network
+    volumes:
+      - ./init-db.sh:/docker-entrypoint-initdb.d/init-db.sh # ToDO add init script or more ligubase values
+
+  liquibase:
+    image: liquibase/liquibase
+    volumes:
+      - ./src/liquibase/changelog.xml:/liquibase/changelog.xml
+    networks:
+      - app-network
+    depends_on:
+      - postgres
+    entrypoint: "liquibase --url=${LIQUIBASE_URL} --username=${LIQUIBASE_USERNAME} --password=${LIQUIBASE_PASSWORD} --changeLogFile=changelog.xml update"
+
+networks:
+  app-network:
+    driver: bridge
