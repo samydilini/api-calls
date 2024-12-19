@@ -2,8 +2,8 @@
 *.zip
 back-end/lambda/node_modules/
 back-end/lambda/package-lock.json
-terraform/.terraform
-terraform/.terraform.lock.hcl
+back-end/terraform/.terraform
+back-end/terraform/.terraform.lock.hcl
 back-end/lambda/dist
 terraform.tfstate*
 .DS_Store

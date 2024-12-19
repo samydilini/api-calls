@@ -1,4 +1,4 @@
-import { handler } from "../../src/handlers/createSchedule";
+import { handler } from "../../src/createSchedule";
 import { APIGatewayProxyEvent, APIGatewayProxyResult } from "aws-lambda";
 import { ScheduleService } from "../../src/services/scheduleService";
 import dotenv from "dotenv";
@@ -48,9 +48,6 @@ describe("Handler Integration Test", () => {
 
   it("should roll back the transaction in case of an error", async () => {
     // Simulate DB error by mocking ScheduleService
-    // jest
-    //   .spyOn(scheduleService, "createScheduleAndTasks")
-    //   .mockRejectedValueOnce(new Error("Database error"));
     jest
       .spyOn(ScheduleService.prototype, "createScheduleAndTasks")
       .mockRejectedValue(new Error("Database error"));

@@ -18,10 +18,10 @@ export class ScheduleService {
 
     // Ensure tasks are mapped correctly
     const taskData = tasks.map((task) => ({
-      account_id: (task.account_id = 0),
-      start_time: (task.start_time = new Date()),
-      duration: (task.duration = 0),
-      type: (task.type = ""),
+      account_id: task.account_id || 0,
+      start_time: task.start_time || new Date(),
+      duration: task.duration || 0,
+      type: task.type || "",
     }));
 
     try {
@@ -43,5 +43,13 @@ export class ScheduleService {
       console.error("Error in transaction:", error);
       throw error;
     }
+  }
+
+  async getAllSchedules(): Promise<Schedule[]> {
+    return await prisma.schedule.findMany({
+      include: {
+        tasks: true, // Include related tasks
+      },
+    });
   }
 }

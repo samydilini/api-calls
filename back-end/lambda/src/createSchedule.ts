@@ -1,7 +1,7 @@
 import { APIGatewayProxyEvent, APIGatewayProxyResult } from "aws-lambda";
-import { ScheduleService } from "../services/scheduleService";
-import { createResponse } from "../utils/response";
-import { isValidSchedule } from "../utils/validation";
+import { ScheduleService } from "./services/scheduleService";
+import { createResponse } from "./utils/response";
+import { isValidSchedule } from "./utils/validation";
 
 /*
 This is the lambda handler for creating a shedule with or without tasks

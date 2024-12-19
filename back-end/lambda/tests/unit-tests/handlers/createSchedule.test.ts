@@ -1,5 +1,5 @@
 import { APIGatewayProxyEvent } from "aws-lambda";
-import { handler } from "../../../src/handlers/createSchedule"; // Adjust the import path
+import { handler } from "../../../src/createSchedule"; // Adjust the import path
 import { ScheduleService } from "../../../src/services/scheduleService";
 import { createResponse } from "../../../src/utils/response";
 import { isValidSchedule } from "../../../src/utils/validation";
