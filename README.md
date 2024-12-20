@@ -33,8 +33,7 @@ I've used parameter store to store secrets as secrets manager is not free
 
 2. Build the lambdas and zip 
 
-
-         #run the script OR use steps
+         run the script OR use steps
 
            option 1  - running script 
               - cd to back-end folder and find the scirpt build_and_zip.sh
@@ -43,6 +42,8 @@ I've used parameter store to store secrets as secrets manager is not free
                   Note: if there are any permission issues use  `sudo chown -R $(whoami) ~/.cache/prisma`
               - run script 
                     `./build_and_zip.sh`
+
+
            option 2 - use the steps 
              - cd in to lambda folder and run
                     `npm run build`
