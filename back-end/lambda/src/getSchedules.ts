@@ -2,9 +2,9 @@ import { APIGatewayProxyEvent, APIGatewayProxyResult } from "aws-lambda";
 import { ScheduleService } from "./services/scheduleService";
 import { createResponse } from "./utils/response";
 
-/*
-This is the lambda handler for getting all the shecdulesin the db
-*/
+/**
+ * This is the lambda handler for getting all the shecdulesin the db
+ */
 const scheduleService = new ScheduleService();
 
 export const handler = async (

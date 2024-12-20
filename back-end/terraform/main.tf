@@ -18,6 +18,7 @@ module "apigateway" {
   create_schedule_lambda_arn = module.lambda.create_schedule_lambda_arn
   delete_schedule_lambda_arn = module.lambda.delete_schedule_lambda_arn
   get_schedules_lambda_arn = module.lambda.get_schedules_lambda_arn
+  update_task_type_lambda_arn = module.lambda.update_task_type_lambda_arn
 }
 
 # IAM roles for the Lambda functions

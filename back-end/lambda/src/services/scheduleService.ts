@@ -1,13 +1,16 @@
 import { PrismaClient, Schedule, Task } from "@prisma/client";
 
 const prisma = new PrismaClient();
-/* 
-Service layer for handling schedules
-*/
+
+/**
+ * Service layer for handling schedules
+ */
 export class ScheduleService {
-  /*
-  create a Schedule
-  */
+  /**
+   * creates a Schedule
+   * @param data  validated user input of the schedule
+   * @returns created schedule
+   */
   async createScheduleAndTasks(
     data: Partial<Schedule> & { tasks?: Partial<Task>[] }
   ): Promise<Schedule> {
@@ -48,7 +51,10 @@ export class ScheduleService {
     }
   }
 
-  /** returns all schedules with their tasks */
+  /**
+   * returns all schedules with their tasks
+   * @returns schedules in db
+   */
   async getAllSchedules(): Promise<Schedule[]> {
     return await prisma.schedule.findMany({
       include: {

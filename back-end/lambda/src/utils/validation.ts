@@ -1,6 +1,8 @@
-/*
-Validation to user inputs
-*/
+/**
+ * validate shedule user input
+ * @param data user input
+ * @returns boolean of if input is validated or not
+ */
 export const isValidSchedule = (data: any): boolean => {
   // Check for required fields
   console.log("validation started", data);
@@ -25,7 +27,11 @@ export const isValidSchedule = (data: any): boolean => {
   return true;
 };
 
-// Validate that start_time and end_time are valid dates
+/**
+ * Validate that start_time and end_time are valid dates
+ * @param date inpout to be validated
+ * @returns boolean of if date input is validated or not
+ */
 function isValidDate(date: any): date is Date {
   const parsedDate: Date = new Date(date);
 
@@ -46,6 +52,11 @@ export const isValidTask = (task: any): boolean => {
   return true;
 };
 
+/**
+ * validated task type update request body
+ * @param data user input
+ * @returns boolean validitiy of the data
+ */
 export const isValidTaskUpdateRequest = (data: any): boolean => {
   console.log("validation started", data);
   if (

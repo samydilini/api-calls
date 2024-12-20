@@ -46,9 +46,9 @@ output "create_schedule_lambda_arn" {
 resource "aws_lambda_function" "delete_schedule_lambda" {
   function_name = "deleteSchedule"
   runtime       = "nodejs20.x"
-  handler       = "createSchedule.handler"
+  handler       = "deleteSchedule.handler"
   role          = var.lambda_execution_role_arn
-  filename      = "${path.module}/../../lambda/dist/src/createSchedule.zip"
+  filename      = "${path.module}/../../lambda/dist/src/deleteSchedule.zip"
 
   environment {
     variables = {
@@ -96,4 +96,32 @@ resource "aws_lambda_permission" "allow_apigateway_invoke_get_schedules" {
 output "get_schedules_lambda_arn" {
   description = "arn of get schedules lambda"
   value       = aws_lambda_function.get_schedules_lambda.arn
+}
+
+# update task type lambda
+resource "aws_lambda_function" "update_task_type_lambda" {
+  function_name = "updateTaskType"
+  runtime       = "nodejs20.x"
+  handler       = "updateTaskType.handler"
+  role          = var.lambda_execution_role_arn
+  filename      = "${path.module}/../../lambda/dist/src/updateTaskType.zip"
+
+  environment {
+    variables = {
+      DATABASE_URL = var.database_url
+    }
+  }
+}
+
+resource "aws_lambda_permission" "allow_apigateway_invoke_update_task_type" {
+  statement_id  = "AllowExecutionFromAPIGatewayUpdateTaskType"
+  action        = "lambda:InvokeFunction"
+  function_name = aws_lambda_function.update_task_type_lambda.arn
+  principal     = "apigateway.amazonaws.com"
+  source_arn    = "${var.api_calls_app_execution_arn}/*"
+}
+
+output "update_task_type_lambda_arn" {
+  description = "arn of update task type lambda"
+  value       = aws_lambda_function.update_task_type_lambda.arn
 }

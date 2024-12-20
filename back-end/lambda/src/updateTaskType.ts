@@ -3,9 +3,9 @@ import { ScheduleService } from "./services/scheduleService";
 import { createResponse } from "./utils/response";
 import { isValidTaskUpdateRequest } from "./utils/validation";
 
-/*
-This is the lambda handler for creating a shedule with or without tasks
-*/
+/**
+ * This is the lambda handler for creating a shedule with or without tasks
+ */
 const scheduleService = new ScheduleService();
 
 export const handler = async (

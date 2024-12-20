@@ -1,10 +1,10 @@
-import { APIGatewayProxyEvent, APIGatewayProxyResult } from "aws-lambda";
+import { APIGatewayProxyResult } from "aws-lambda";
 import { ScheduleService } from "./services/scheduleService";
 import { createResponse } from "./utils/response";
 
-/*
-This is the lambda handler for deleting a schedule using an id
-*/
+/**
+ * This is the lambda handler for deleting a schedule using an id
+ */
 const scheduleService = new ScheduleService();
 
 export const handler = async (event: any): Promise<APIGatewayProxyResult> => {

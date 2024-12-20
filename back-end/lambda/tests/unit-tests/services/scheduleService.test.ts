@@ -31,7 +31,7 @@ describe("ScheduleService", () => {
       end_time: new Date("2024-12-19T01:00:00Z"),
       tasks: [
         {
-          account_id: 1,
+          account_id: 12,
           start_time: new Date("2024-12-19T00:30:00Z"),
           duration: 30,
           type: "task type",
@@ -60,10 +60,10 @@ describe("ScheduleService", () => {
         end_time: mockData.end_time,
         tasks: {
           create: mockData.tasks.map((task) => ({
-            account_id: 0,
-            start_time: new Date(),
-            duration: 0,
-            type: "",
+            account_id: task.account_id,
+            start_time: task.start_time,
+            duration: task.duration,
+            type: task.type,
           })),
         },
       },
