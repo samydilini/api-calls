@@ -12,13 +12,19 @@ iv.  DELETE deleteSchedule
 1. installing api calls and prisma
    from back-end/lambda folder
    create a file.env and copy the content or .env.local to it
-   `npm install`
+
+`npm install`
+
    `prisma generate`
+
 2. build docker for local environment. This is used for integration tests. 
 `docker-compose --env-file .env.local up --build`
-if that gives issue use below
+
+if that gives issue use below,
+
 `docker-compose --env-file .env.local up --force-recreate`
 3. run all the unit and integration tests
+
 `npm test`
 
 ## Deploying to AWS
