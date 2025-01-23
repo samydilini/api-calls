@@ -15,7 +15,7 @@ iv.  DELETE deleteSchedule
 
 `npm install`
 
-   `prisma generate`
+`prisma generate`
 
 2. build docker for local environment. This is used for integration tests. 
 `docker-compose --env-file .env.local up --build`
